@@ -1,9 +1,8 @@
 import os 
 import sys
-import pandas as pd
-from src.componets.data_ingestion import DataIngestion
-from src.componets.data_transformation import DataTransformation
-from src.componets.model_training import ModelTrainer 
+from src.components.data_ingestion import DataIngestion
+from src.components.data_transformation import DataTransformation
+from src.components.model_training import ModelTrainer 
 
 from src.exception import CustomException
 from src.logger import logging

@@ -2,11 +2,13 @@ import os
 import sys
 from src.logger import logging
 from src.exception import CustomException
-import pandas as pd
-import numpy as np
-
+from src.utils import save_object
+from src.utils import evaluate_models
 from sklearn.naive_bayes import GaussianNB
-from sklearn.model_selection import GridSearchCV
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from xgboost import XGBClassifier
+from dataclasses import dataclass
 
 
 @dataclass 
@@ -29,11 +31,14 @@ class ModelTrainer:
             )
 
             models={
-            'gausianNB':GaussianNB(),
-            'gridsearchCV':GridsearchCV()
-        }
+            'gausianNB':GaussianNB(var_smoothing=0.5),
+            'random_forest':RandomForestClassifier(n_estimators=100,criterion='gini',random_state=0),
+            'gradiant_boost':GradientBoostingClassifier(),
+            'k_nearest_naibour':KNeighborsClassifier(),
+            'xgboost':XGBClassifier(),
+                    }
             
-            model_report:dict=evaluate_model(X_train,y_train,X_test,y_test,models)
+            model_report:dict=evaluate_models(X_train,y_train,X_test,y_test,models)
             print(model_report)
             print('\n====================================================================================\n')
             logging.info(f'Model Report : {model_report}')

@@ -1,6 +1,5 @@
 import os
 import sys
-import pandas as pd
 from src.logger import logging
 from src.exception import CustomException
 from src.utils import download_model, load_object
