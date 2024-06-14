@@ -26,7 +26,8 @@ class DataTransformationconfig:
 ## Data Ingestionconfig class
 
 class DataTransformation:
-    def __init__(self):
+    def __init__(self,feature_store_file_path ):
+        self.feature_store_file_path = feature_store_file_path
         self.data_transformation_config=DataTransformationconfig()
 
     def get_data_transformation_object(self):

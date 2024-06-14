@@ -52,14 +52,16 @@ class ModelTrainer:
             
             best_model = models[best_model_name]
 
-            print(f'Best Model Found , Model Name : {best_model_name} , R2 Score : {best_model_score}')
+            print(f'Best Model Found , Model Name : {best_model_name} , acuracy score : {best_model_score}')
             print('\n====================================================================================\n')
-            logging.info(f'Best Model Found , Model Name : {best_model_name} , R2 Score : {best_model_score}')
+            logging.info(f'Best Model Found , Model Name : {best_model_name} , acuracy Score : {best_model_score}')
 
             save_object(
                  file_path=self.model_trainer_config.trained_model_file_path,
                  obj=best_model
             )
+
+            return best_model , best_model_name , best_model_score
           
 
         except Exception as e:

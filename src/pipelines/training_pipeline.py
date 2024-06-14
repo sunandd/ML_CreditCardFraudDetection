@@ -13,7 +13,7 @@ class TrainPipeline:
         self.data_transformation=DataTransformation()
         self.model_trainer=ModelTrainer()
 
-    def run_pipeline():
+    def run_pipeline(self):
         try:
             train_path, test_path=self.data_ingestion.initiate_data_ingestion()
 
@@ -24,9 +24,13 @@ class TrainPipeline:
             )= self.data_transformation.initiate_data_transformation(
                 train_path=train_path, test_path=test_path
             )
-            
-
-
+            accuracy_score = self.model_trainer.initiate_model_trainer(
+                train_array=train_arr,
+                test_array=test_arr,
+                preprocessor_path=preprocessor_file_path,
+            )
+            print("training completed. Trained model score : ", accuracy_score)
+            logging.info("training pipeline completed")
 
 
         except Exception as e:
